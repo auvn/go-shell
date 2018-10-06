@@ -1,4 +1,4 @@
-package fmtstr
+package strfmt
 
 import (
 	"fmt"
@@ -28,6 +28,6 @@ func Normal(s string) string {
 	return style(StyleNormal, s)
 }
 
-func Fprintf(w io.Writer, style Style, format string, args ...interface{}) (n int, err error) {
-	return fmt.Fprintf(w, string(style)+format, args...)
+func Fprintf(w io.Writer, st Style, format string, args ...interface{}) (n int, err error) {
+	return fmt.Fprintf(w, style(st, format), args...)
 }
