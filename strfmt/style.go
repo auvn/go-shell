@@ -8,12 +8,13 @@ import (
 type Style string
 
 const (
-	StyleBold   Style = "\033[1m"
-	StyleNormal Style = "\033[0m"
+	esc Style = "\033[0m"
+
+	StyleBold Style = "\033[1m"
 )
 
 var (
-	DefaultStyle = StyleNormal
+	DefaultStyle = esc
 )
 
 func style(st Style, s string) string {
@@ -25,7 +26,7 @@ func Bold(s string) string {
 }
 
 func Normal(s string) string {
-	return style(StyleNormal, s)
+	return style(esc, s)
 }
 
 func Fprintf(w io.Writer, st Style, format string, args ...interface{}) (n int, err error) {
